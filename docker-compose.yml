@@ -1,7 +1,10 @@
 service:
   image: crashplan_service
   volumes:
-    - /home/anders/Pictures:/mnt/targets/pictures
+    - /home/:/mnt/targets/home
     - /srv/crashplan/backups
   volumes_from:
     - crashplan_data
+  ports:
+    - "4242:4242"
+    - "4243:4243"

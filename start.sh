@@ -8,8 +8,11 @@ cmd=/opt/crashplan/bin/CrashPlanEngine
 
 $cmd start
 sleep 10
-addr=$(ip -f inet -o addr show $interface|cut -d\  -f 7 | cut -d/ -f 1)
-sed -i "s/<serviceHost>.*<\/serviceHost>/<serviceHost>$addr<\/serviceHost>/" /opt/crashplan/conf/my.service.xml
-$cmd restart
+
+grep "<serviceHost>0.0.0.0" /opt/crashplan/conf/my.service.xml &>/dev/null \
+    || ( \
+        sed -i "s/<serviceHost>.*<\/serviceHost>/<serviceHost>0.0.0.0<\/serviceHost>/" /opt/crashplan/conf/my.service.xml \
+        && $cmd restart \
+    )
 
 tail -f /opt/crashplan/log/engine_error.log
