@@ -1,8 +1,5 @@
 #!/bin/bash
 ## Thanks to the maintainer of https://aur.archlinux.org/packages/crashplan/
-## This script should be run once to populate a data-only container where Crashplan is installed:
-##  docker run --rm -it --volumes-from crashplan_data -v $(pwd):/home ubuntu /home/crashplan-install.sh
-## It also runs the crashplan image one time to generate a my.service.xml file which will be automatically updated with the Docker IP address each time the crashplan container is started.
 volume_name=crashplan_data
 pkgname=crashplan
 pkgver=$CRASHPLAN_VERSION
