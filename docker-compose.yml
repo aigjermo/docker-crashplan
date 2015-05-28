@@ -1,0 +1,7 @@
+service:
+  image: crashplan_service
+  volumes:
+    - /home/anders/Pictures:/mnt/targets/pictures
+    - /srv/crashplan/backups
+  volumes_from:
+    - crashplan_data
